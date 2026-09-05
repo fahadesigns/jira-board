@@ -1,0 +1,20 @@
+<dialog #dialogRef aria-labelledby="dialog-add-list-title" (close)="close()">
+  <form #listForm="ngForm" (ngSubmit)="submit()">
+    <h2 id="dialog-add-list-title" class="dialog-title">Add New List</h2>
+
+    <div class="form-group">
+      <label for="list-title-input">List Title</label>
+      <input type="text" id="list-title-input" class="form-input" name="listTitle" [(ngModel)]="listTitle"
+        placeholder="e.g. Done, Review..." autocomplete="off" />
+    </div>
+
+    @if (errorMessage) {
+    <div class="form-error" role="alert">{{ errorMessage }}</div>
+    }
+
+    <div class="dialog-actions">
+      <button type="button" class="btn-secondary btn-cancel" (click)="close()">Cancel</button>
+      <button type="submit" class="btn-primary">Add List</button>
+    </div>
+  </form>
+</dialog>

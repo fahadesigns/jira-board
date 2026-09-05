@@ -1,0 +1,23 @@
+<section class="board-list" [class.drop-highlight]="dropping" [attr.aria-label]="'List: ' + list.title"
+  (dragover)="dragOver($event)" (dragleave)="dragLeave($event)" (drop)="handleDrop($event)">
+  <div class="list-header">
+    <h2 class="list-title">{{ list.title }}</h2>
+    <button type="button" class="btn-delete del-btn" [title]="'Delete list ' + list.title"
+      [attr.aria-label]="'Delete list ' + list.title" (click)="onDeleteList()">
+      X
+    </button>
+  </div>
+
+  <div class="cards-container">
+    @for (card of list.cards; track card.id) {
+      <app-card [card]="card" (deleteCard)="onDeleteCard($event)"></app-card>
+    }
+  </div>
+
+  <div class="list-footer">
+    <button type="button" class="add-btn" [title]="'Add new card to ' + list.title"
+      [attr.aria-label]="'Add new card to ' + list.title" (click)="onAddCard()">
+      +
+    </button>
+  </div>
+</section>

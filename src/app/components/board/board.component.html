@@ -1,0 +1,29 @@
+<header class="app-header">
+  <h1 class="app-title">Jira Board</h1>
+  <button id="btn-add-list" class="btn-action" type="button" (click)="openListForm()">
+    ADD LIST
+  </button>
+</header>
+
+<main class="board-main">
+  <div class="board-container" role="region" aria-label="Jira Kanban Board">
+    @if (board().lists.length === 0) {
+      <div class="empty-state">
+        No lists available. Click "ADD LIST" on the top right to create one.
+      </div>
+    } @else {
+      @for (list of board().lists; track list.id) {
+        <app-board-list
+          [list]="list"
+          (deleteList)="onDeleteList($event)"
+          (addCard)="openCardForm($event)"
+          (deleteCard)="onDeleteCard($event)"
+          (cardDrop)="handleDrop($event)"
+        ></app-board-list>
+      }
+    }
+  </div>
+</main>
+
+<app-add-list (submitList)="handleNewList($event)"></app-add-list>
+<app-add-card (submitCard)="handleNewCard($event)"></app-add-card>

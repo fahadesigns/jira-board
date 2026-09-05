@@ -1,0 +1,26 @@
+<dialog #dialogRef aria-labelledby="dialog-add-card-title" (close)="close()">
+  <form #cardForm="ngForm" (ngSubmit)="submit()">
+    <h2 id="dialog-add-card-title" class="dialog-title">Add New Card</h2>
+
+    <div class="form-group">
+      <label for="card-title-input">Title</label>
+      <input type="text" id="card-title-input" class="form-input" name="cardTitle" [(ngModel)]="cardTitle"
+        placeholder="Card title..." autocomplete="off" />
+    </div>
+
+    <div class="form-group">
+      <label for="card-desc-input">Description</label>
+      <textarea id="card-desc-input" class="form-textarea" name="cardDesc" [(ngModel)]="cardDesc"
+        placeholder="Card description..." rows="3"></textarea>
+    </div>
+
+    @if (errorMessage) {
+      <div class="form-error" role="alert">{{ errorMessage }}</div>
+    }
+
+    <div class="dialog-actions">
+      <button type="button" class="btn-secondary btn-cancel" (click)="close()">Cancel</button>
+      <button type="submit" class="btn-primary">Add Card</button>
+    </div>
+  </form>
+</dialog>
